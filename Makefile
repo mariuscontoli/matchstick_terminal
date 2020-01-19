@@ -11,6 +11,9 @@ NAME	=	matchstick
 
 SRC	=	src/matchstick.c\
 		src/my_map.c\
+		src/error.c\
+		src/input.c\
+		src/is_valid.c\
 		src/utils.c\
 		my_printf/my_printf.c\
 		my_printf/print_chars.c\
