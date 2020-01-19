@@ -7,50 +7,46 @@
 
 #include "../include/matchstick.h"
 
-char **fill_with_matches(char **map, int length, int height, int len_map)
+void fill_with_matches(matchstick_t match)
 {
-    int matches = length - 2;
+    int matches = match->len_line - 2;
     int i;
     int c;
     int offset = 1;
 
-    for (int i = height; i != 0; i--) {
-        for (int match = matches, j = offset; match > 0; match--, j++) {
-            map[i][j] = '|';
+    for (int i = match->numb_lines; i != 0; i--) {
+        for (int matcho = matches, j = offset; matcho > 0; matcho--, j++) {
+            match->map[i][j] = '|';
         }
         matches -= 2;
         offset += 1;
     }
-    return (map);
 }
 
-char **my_square(int number, int length)
+void my_square(matchstick_t match)
 {
-    char **map = NULL;
-    int len_map = 0;
-    int height = (number + 2);
+    int height = (match->numb_lines + 2);
     int line = 0;
     int x = 0;
     int y = 0;
-    len_map = length * (number + 2);
-    map = malloc(sizeof(char *) * (len_map + 1));
+    match->map = malloc(sizeof(char *) * (match->len_map + 1));
 
     while (line < height) {
-        map[line] = malloc(sizeof(char) * (length));
-        while (y != length) {
-            if (y > 0 && y < length - 1 && line != 0 && line != height - 1 ) {
-                map[line][y] = ' ';
+        match->map[line] = malloc(sizeof(char) * (match->len_line));
+        while (y != match->len_line) {
+            if (y > 0 && y < match->len_line - 1 && line != 0 &&
+            line != height - 1 ) {
+                match->map[line][y] = ' ';
                 y++;
             } else {
-                map[line][y] = '*';
+                match->map[line][y] = '*';
                 y++;
             }
         }
-        map[line][y] = '\0';
+        match->map[line][y] = '\0';
         line += 1;
         y = 0;
     }
-    map[len_map] = NULL;
-    map = fill_with_matches(map, length, number, len_map);
-    return map;
+    match->map[match->len_map] = NULL;
+    fill_with_matches(match);
 }

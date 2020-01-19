@@ -9,51 +9,64 @@
 
 /* read, write, malloc, free, time, getpid, random, srandom, getline */
 
-char *input_line(void)
+void my_remove(matchstick_t match, int line, int matches)
 {
-    char *line = NULL;
-    size_t len = 0;
-    size_t read = 0;
+    int i = 0;
+    int j = 0;
 
-    my_printf("Your turn:\n");
-    my_printf("Line: ");
-    read = getline(&line, &len, stdin);
-    return (line);
-}
-
-char *input_matches(void)
-{
-    char *matches = NULL;
-    size_t len = 0;
-    size_t read = 0;
-
-    my_printf("Matches: ");
-    read = getline(&matches, &len, stdin);
-    return (matches);
-}
-
-void display_map(char **tab)
-{
-    for (int i = 0; tab && tab[i]; i++) {
-        my_printf("%s\n", tab[i]);
+    while (match->map[line][i] != '|') {
+        i++;
     }
-    my_printf("\n");
+    j = i;
+    while (match->map[line][j + 1] == '|') {
+        j++;
+    }
+    while (matches != 0) {
+        if (match->map[line][j] == '|') {
+            match->map[line][j] = ' ';
+            j--;
+            matches--;
+        }
+    }
+}
+
+void ai_turn(matchstick_t match)
+{
+    if (how_many_matches(match) == 0) {
+        my_printf("You lost, too bad...\n");
+        return;
+    }
+    my_printf("AI's turn...\n");
+
+
+}
+
+void game(matchstick_t match)
+{
+    int matches = 0;
+    match->match_left = how_many_matches(match);
+    
+    display_map(match->map);
+    while (match->match_left > 0) {
+        input(match);
+        display_map(match->map);
+        //ai_turn(match);
+        //display_map(match->map);
+    }
 }
 
 int main(int ac, char **av)
 {
-    int number = my_getnbr(av[1]);
-    int number2 = (number * 2 + 1);
-    char **tab = my_square(number, number2);
-    char *line = NULL;
-    char *matches = NULL;
+    matchstick_t match = malloc(sizeof(*match));
+    match->numb_lines = my_getnbr(av[1]);
+    match->offset = my_getnbr(av[2]);
+    match->len_line = (match->numb_lines * 2 + 1);
+    match->len_map = match->len_line * (match->numb_lines + 2);
+    match->height = (match->numb_lines + 2);
+    my_square(match);
 
     if (ac != 3)
         return (84);
-    display_map(tab);
-    line = input_line();
-    matches = input_matches();
-    my_printf("Player removed %d match(es) from line %d\n", my_getnbr(matches),
-    my_getnbr(line));
+    game(match);
     return 0;
 }
