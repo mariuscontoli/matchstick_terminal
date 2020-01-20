@@ -42,6 +42,7 @@ int devil_error(matchstick_t match, int matches)
 {
     if (matches == -6) {
         matches = -15;
+        match->step = 1;
     }
     if (matches > match->offset) {
         my_printf("Error: you cannot remove more than %d matches per turn\n",
