@@ -32,11 +32,9 @@ void my_remove(matchstick_t match, int line, int matches)
 
 void ai_turn(matchstick_t match)
 {
-    int counter;
     int line;
     int matche;
     srand(time(NULL));
-    const int max1 = match->numb_lines;
 
     if (how_many_matches(match) == 0) {
         match->ia_lose = 0;
