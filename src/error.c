@@ -22,7 +22,7 @@ int error_line(matchstick_t match, int line)
 }
 
 int error_matche(matchstick_t match, int matche)
-{   
+{
     if (matche == 0) {
         return (0);
     }

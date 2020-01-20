@@ -37,7 +37,7 @@ void ai_turn(matchstick_t match)
     int matche;
     srand(time(NULL));
     const int max1 = match->numb_lines;
-    
+
     if (how_many_matches(match) == 0) {
         match->ia_lose = 0;
         return;
@@ -61,7 +61,7 @@ void game(matchstick_t match)
     int matches = 0;
     match->ia_lose = 3;
     match->match_left = how_many_matches(match);
-    
+
     display_map(match->map);
     while (match->match_left > 0) {
         input(match);

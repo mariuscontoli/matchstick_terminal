@@ -16,7 +16,7 @@ void display_map(char **tab)
 
 int how_many_matches(matchstick_t match)
 {
-    int len = 0; 
+    int len = 0;
 
     for (int i = 0; i != match->height; i++) {
         for (int j = 0; match->map[i][j]; j++) {
