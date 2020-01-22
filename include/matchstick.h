@@ -36,7 +36,7 @@ void my_square(matchstick_t match);
 void fill_with_matches(matchstick_t match);
 void my_remove(matchstick_t match, int line, int matches);
 void game(matchstick_t match);
-void input(matchstick_t match);
+int input(matchstick_t match);
 void ai_turn(matchstick_t match);
 void display_map(char **tab);
 int input_line(matchstick_t match, int step);
