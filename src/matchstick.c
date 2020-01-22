@@ -62,7 +62,8 @@ void game(matchstick_t match)
 
     display_map(match->map);
     while (match->match_left > 0) {
-        input(match);
+        if (input(match) == -1)
+            return;
         display_map(match->map);
         ai_turn(match);
         if (match->ia_lose == 0) {
@@ -89,5 +90,10 @@ int main(int ac, char **av)
     match->height = (match->numb_lines + 2);
     my_square(match);
     game(match);
-    return 0;
+    if (match->ia_lose == 1) {
+        return (1);
+    } else if (match->ia_lose == 0) {
+        return (2);
+    }
+    return (0);
 }

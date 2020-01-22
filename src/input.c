@@ -19,6 +19,8 @@ int input_line(matchstick_t match, int step)
     while (error == 84) {
         my_printf("Line: ");
         read = getline(&str, &len, stdin);
+        if (read == EOF)
+            return -1;
         error = is_valid_line(match, str);
         line = my_getnbr(str);
     }
@@ -37,6 +39,8 @@ int input_matches(matchstick_t match)
     while (error == 84) {
         my_printf("Matches: ");
         read = getline(&str, &len, stdin);
+        if (read == EOF)
+            return (-1);
         error = is_valid_matche(match, str);
         matches = my_getnbr(str);
         if (error == -6)
@@ -46,15 +50,19 @@ int input_matches(matchstick_t match)
     return (matches);
 }
 
-void input(matchstick_t match)
+int input(matchstick_t match)
 {
     int line = 0;
     match->step = 0;
     int matches = -15;
     while (matches == -15) {
         line = input_line(match, match->step);
+        if (line == -1)
+            return (-1);
         match->current_line = line;
         matches = input_matches(match);
+        if (matches == -1)
+            return (-1);
         matches = devil_error(match, matches);
     }
     my_printf("Player removed %d match(es) from line %d\n", matches,
