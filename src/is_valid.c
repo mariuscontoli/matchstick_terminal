@@ -41,7 +41,7 @@ int is_valid_matche(matchstick_t match, char *str)
     }
     matche = my_getnbr(str);
     if (error_matche(match, matche) == 84) {
-        return (84);
+        return (-6);
     }
     return (0);
 }
