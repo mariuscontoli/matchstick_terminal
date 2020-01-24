@@ -83,7 +83,7 @@ int main(int ac, char **av)
     matchstick_t match = malloc(sizeof(*match));
     match->numb_lines = my_getnbr(av[1]);
     match->offset = my_getnbr(av[2]);
-    if (match->numb_lines < 1 || match->numb_lines > 99)
+    if (match->numb_lines < 2 || match->numb_lines > 99)
         return (84);
     match->len_line = (match->numb_lines * 2 + 1);
     match->len_map = match->len_line * (match->numb_lines + 2);
