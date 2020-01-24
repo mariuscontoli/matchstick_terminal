@@ -15,6 +15,10 @@ int is_valid_line(matchstick_t match, char *str)
         return (84);
     }
     line = my_getnbr(str);
+    if (line == -6) {
+            my_printf("Error: invalid input (positive number expected)\n");
+            return (84);
+    } 
     if (error_line(match, line) == 84) {
         return (84);
     }
@@ -40,6 +44,10 @@ int is_valid_matche(matchstick_t match, char *str)
         return (-6);
     }
     matche = my_getnbr(str);
+    if (matche == -6) {
+            my_printf("Error: invalid input (positive number expected)\n");
+            return (-6);
+    } 
     if (error_matche(match, matche) == 84) {
         return (-6);
     }
