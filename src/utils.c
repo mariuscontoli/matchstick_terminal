@@ -43,6 +43,7 @@ int my_getnbr(char *str)
     int i = 0;
     int sign = 1;
     int	tmp = 0;
+    int devil = 0;
 
     while (str[i] == ' ')
         i++;
@@ -50,9 +51,14 @@ int my_getnbr(char *str)
         sign = -1;
         i++;
     }
+    if (str[i] == '0')
+        devil = 1;
     while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9') {
         tmp = tmp * 10 + str[i] - '0';
         i++;
+        devil++;
     }
+    if (devil != 1 && tmp == 0)
+        return -6;
     return (tmp * sign);
 }
