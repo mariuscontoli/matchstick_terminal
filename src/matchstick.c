@@ -90,6 +90,7 @@ int main(int ac, char **av)
     match->height = (match->numb_lines + 2);
     my_square(match);
     game(match);
+    free_struct(match);
     if (match->ia_lose == 1) {
         return (1);
     } else if (match->ia_lose == 0) {

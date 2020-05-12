@@ -62,3 +62,14 @@ int my_getnbr(char *str)
         return -6;
     return (tmp * sign);
 }
+
+void free_struct(matchstick_t match)
+{
+    int i = 0;
+    while (match->map[i] != NULL) {
+        free(match->map[i]);
+        i++;
+    }
+    free(match->map);
+    free(match);
+}
